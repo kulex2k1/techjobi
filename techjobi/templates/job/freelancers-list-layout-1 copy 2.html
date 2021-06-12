@@ -1,0 +1,216 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+
+	<!-- Header Container
+	================================================== -->
+	
+		{% block header %}
+		{% include "base/header.html" %}
+	<!-- Spacer -->
+<div class="margin-top-90"></div>
+<!-- Spacer / End-->
+		{% endblock %}
+	
+	<!-- Intro Banner
+	================================================== -->
+	<!-- add class "disable-gradient" to enable consistent background overlay -->
+		{% block banner %}
+	
+		{% endblock %}
+	
+	
+	<!-- Content
+	================================================== -->
+	<!-- Category Boxes -->
+
+
+
+
+		{% block content %}
+		<div class="container">
+			
+			<div class="row">
+				<div class="col-xl-3 col-lg-4">
+					<form action="" method="post">
+						{% csrf_token %}
+					<div class="sidebar-container">
+						
+						<!-- Location -->
+						<div class="sidebar-widget">
+							<h3>Location</h3>
+							<div class="input-with-icon">
+								<div id="autocomplete-container">
+									<input id="autocomplete-input" name='employee_location' type="text" placeholder="Location">
+
+								</div>
+								<i class="icon-material-outline-location-on"></i>
+							</div>
+						</div>
+		
+						<!-- Keywords -->
+						<div class="sidebar-widget">
+							<h3>Keywords</h3>
+							<div class="keywords-container">
+								<div class="keyword-input-container">
+									<input type="text" class="keyword-input" name='job_type' placeholder="e.g. job title"/>
+									<!-- <button class="keyword-input-button ripple-effect"><i class="icon-material-outline-add"></i></button> -->
+								</div>
+								<div class="keywords-list"><!-- keywords go here --></div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+						
+						<!-- Category -->
+						<div class="sidebar-widget">
+							<h3>Category</h3>
+							<select class="selectpicker" multiple data-selected-text-format="count" data-size="7" title="All Categories">
+								<option>IT</option>
+								<option>Digital Banking</option>
+							
+							</select>
+						</div>
+						
+						<!-- Job Types -->
+						<div class="sidebar-widget">
+							<h3>Job Type</h3>
+		
+							<select class="selectpicker" multiple data-selected-text-format="count" data-size="7" title="All Job Types">
+								<option>Full Time</option>
+								<option>Part Time</option>
+								<option>Temporary</option>
+								<option>Internship</option>
+							
+							</select>
+		
+						</div>
+		
+						<div class="intro-search-button">
+							<button class="button ripple-effect" >Search</button>
+						</div>
+					
+		
+					</div>
+				</form>
+				</div>
+				<div class="col-xl-9 col-lg-8 content-left-offset">
+		
+					<h3 class="page-title">Search Results</h3>
+		
+				
+						
+					<div class="freelancers-container freelancers-list-layout compact-list margin-top-35">
+						
+					 {% for employee in employee_listings %}
+				
+						<!--Freelancer -->
+						<div class="freelancer">
+		
+							<!-- Overview -->
+							<div class="freelancer-overview">
+								<div class="freelancer-overview-inner">
+									
+									<!-- Bookmark Icon -->
+									<span class="bookmark-icon"></span>
+									
+									<!-- Avatar -->
+									<div class="freelancer-avatar">
+										<div class="verified-badge"></div>
+										<a href="single-freelancer-profile.html"><img src="images/user-avatar-big-01.jpg" alt=""></a>
+									</div>
+		
+									<!-- Name -->
+									<div class="freelancer-name">
+										<h4><a href="#">{{employee.username}} <img class="flag" src="images/flags/gb.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
+										<span>{{employee.skills}}</span>
+										<!-- Rating -->
+										<div class="freelancer-rating">
+											<div class="star-rating" data-rating="2"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Details -->
+							<div class="freelancer-details">
+								<div class="freelancer-details-list">
+									<ul>
+										<li>Location <strong><i class="icon-material-outline-location-on"></i> {{employee.location}}</strong></li>
+									
+										<li>Nationality <strong>{{employee.nationality}}</strong></li>
+									</ul>
+								</div>
+								<a href="{% url 'employee_profile' employee.id %}" class="button button-sliding-icon ripple-effect">View Profile <i class="icon-material-outline-arrow-right-alt"></i></a>
+							</div>
+						</div>
+						<!-- Freelancer / End -->
+		
+		
+					 {% endfor %}
+					</div>
+					
+		
+					<!-- Pagination -->
+					<div class="clearfix"></div>
+					<div class="row">
+						<div class="col-md-12">
+							<!-- Pagination -->
+							<div class="pagination-container margin-top-60 margin-bottom-60">
+								<nav class="pagination">
+									<ul>
+										<li class="pagination-arrow"><a href="#"><i class="icon-material-outline-keyboard-arrow-left"></i></a></li>
+										<li><a href="#">1</a></li>
+										<li><a href="#" class="current-page">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+								
+										<li class="pagination-arrow"><a href="#"><i class="icon-material-outline-keyboard-arrow-right"></i></a></li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+					<!-- Pagination / End -->
+		
+				</div>
+			</div>
+		</div>
+		
+		{% endblock %}
+	<!-- Category Boxes / End -->
+	
+	
+	<!-- Features Jobs -->
+		{% block feature %}
+
+		{% endblock %}
+	<!-- Featured Jobs / End -->
+	
+	
+	<!-- Features Cities -->
+		{% block city %}
+	
+		{% endblock %}
+	<!-- Features Cities / End -->
+	
+	
+	<!-- Highest Rated Freelancers -->
+		{% block freelancer %}
+
+		{% endblock %}
+	<!-- Highest Rated Freelancers / End-->
+	
+	
+	<!-- Membership Plans -->
+		{% block membership %}
+	
+		{% endblock %}
+	<!-- Membership Plans / End-->
+	
+	<!-- Footer
+	================================================== -->
+	{% block footer %}
+	{% include "base/footer.html" %}
+	{% endblock %}
+	<!-- Footer / End -->
+

@@ -1,0 +1,66 @@
+		
+        {% if first_name != '' %}
+        <!-- Navigation -->
+        <div class="dashboard-nav">
+            <div class="dashboard-nav-inner">
+
+                <ul data-submenu-title="Start">
+                    <li class="active"><a href="{% url 'dashboard' %}""><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+                    <!-- <li><a href="dashboard-messages.html"><i class="icon-material-outline-question-answer"></i> Messages <span class="nav-tag">2</span></a></li> -->
+                    <!-- <li><a href="dashboard-bookmarks.html"><i class="icon-material-outline-star-border"></i> Bookmarks</a></li> -->
+                    <!-- <li><a href="dashboard-reviews.html"><i class="icon-material-outline-rate-review"></i> Reviews</a></li> -->
+                    {% for group in user.groups.all %}
+                    {% if group.name == 'candidate' %}
+                    <li><a href="{% url 'job_applied' request.user %}"><i class="icon-material-outline-folder"></i> My Applied Jobs</a></li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                
+                {% for group in user.groups.all %}
+						{% if group.name == 'employer' %}
+                <ul data-submenu-title="Organize and Manage">
+                    
+                    <li><a href="#"><i class="icon-material-outline-business-center"></i> Jobs</a>
+                        <ul>
+                            <li><a href="{% url 'manage_job' %}">Manage Jobs <span class="nav-tag">3</span></a></li>
+                            <li><a href="{% url 'manage_candidate' %}">Manage Candidates</a></li>
+                            <li><a href="{% url 'job_posted' %}">My Posted Jobs</a></li>
+                            <li><a href="{% url 'post_job' %}">Post a Job</a></li>
+                           
+                        </ul>	
+                    </li>
+
+                   
+                    <!-- <li><a href="#"><i class="icon-material-outline-assignment"></i> Tasks</a>
+                        <ul>
+                            <li><a href="dashboard-manage-tasks.html">Manage Tasks <span class="nav-tag">2</span></a></li>
+                            <li><a href="dashboard-manage-bidders.html">Manage Bidders</a></li>
+                            <li><a href="dashboard-my-active-bids.html">My Active Bids <span class="nav-tag">4</span></a></li>
+                            <li><a href="dashboard-post-a-task.html">Post a Task</a></li>
+                        </ul>	
+                    </li> -->
+
+                </ul>
+                {% endif %}
+                {% endfor %}
+
+
+                <ul data-submenu-title="Account">
+               
+						{% for group in user.groups.all %}
+						{% if group.name == 'candidate' %}
+
+                    <li><a href="{% url 'profile_settings'  %}"><i class="icon-material-outline-settings"></i> User Profile </a></li>
+                    {% else %}
+ 
+                    <li><a href="{% url 'employer_settings'  %}"><i class="icon-material-outline-settings"></i> Company Profile</a></li>
+                    {% endif %}
+						{% endfor %}
+                    <li><a href="{% url 'logout' %}"><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+                </ul>
+                
+            </div>
+        </div>
+        <!-- Navigation / End -->
+
+        {% endif %}

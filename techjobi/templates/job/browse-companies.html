@@ -1,0 +1,141 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+
+	<!-- Header Container
+	================================================== -->
+	
+		{% block header %}
+		{% include "base/header.html" %}
+	
+		{% endblock %}
+	
+	<!-- Intro Banner
+	================================================== -->
+	<!-- add class "disable-gradient" to enable consistent background overlay -->
+		{% block banner %}
+	
+		{% endblock %}
+	
+	
+	<!-- Content
+	================================================== -->
+	<!-- Category Boxes -->
+		{% block content %}
+		<div id="titlebar" class="gradient">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+		
+						<h2>Browse Companies</h2>
+		
+						<!-- Breadcrumbs -->
+						<nav id="breadcrumbs" class="dark">
+							<ul>
+								<li><a href="{% url 'home'%}">Home</a></li>
+								<li><a href="{% url 'home'%}">Find Work</a></li>
+								<li>Browse Companies</li>
+							</ul>
+						</nav>
+		
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<!-- Page Content
+		================================================== -->
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="letters-list">
+						<form action="" method="post">
+							{% csrf_token %}
+						<div class="row">
+							<div class="col-md-12">
+						
+								<div class="intro-banner-search-form ">
+									<!-- Search Field -->
+									<div class="intro-search-field">
+										<input id="intro-keywords" type="text" placeholder="Company Name or Keywords" name='company_name'>
+									</div>
+				
+									<!-- Button -->
+									<div class="intro-search-button">
+										<button class="button ripple-effect" >Search</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						</form>
+					</div>
+				</div>
+				
+				<div class="col-xl-12">
+					
+					<div class="companies-list">
+						{% for company in company_listings %}
+						<a href="{% url 'company_profile' company.id %}" class="company">
+							<div class="company-inner-alignment">
+								<span class="company-logo"><img src="images/company-logo-placeholder.png" alt=""></span>
+								<h4>{{company.company_name}}</h4>
+								<div class="star-rating" data-rating="3.5"></div>
+							</div>
+						</a>
+						{% endfor %}	
+
+					</div>
+				
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<!-- Spacer -->
+		<div class="margin-top-70"></div>
+		<!-- Spacer / End-->
+		
+		<!-- Footer
+		================================================== -->
+		<div id="footer">
+		
+		{% endblock %}
+	<!-- Category Boxes / End -->
+	
+	
+	<!-- Features Jobs -->
+		{% block feature %}
+
+		{% endblock %}
+	<!-- Featured Jobs / End -->
+	
+	
+	<!-- Features Cities -->
+		{% block city %}
+	
+		{% endblock %}
+	<!-- Features Cities / End -->
+	
+	
+	<!-- Highest Rated Freelancers -->
+		{% block freelancer %}
+
+		{% endblock %}
+	<!-- Highest Rated Freelancers / End-->
+	
+	
+	<!-- Membership Plans -->
+		{% block membership %}
+	
+		{% endblock %}
+	<!-- Membership Plans / End-->
+	
+	<!-- Footer
+	================================================== -->
+	{% block footer %}
+	{% include "base/footer.html" %}
+	{% endblock %}
+	<!-- Footer / End -->
+

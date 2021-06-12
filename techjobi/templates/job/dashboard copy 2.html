@@ -1,0 +1,316 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load mathfilters %}
+
+	<!-- Header Container
+	================================================== -->
+	
+		{% block header %}
+		{% include 'base/messages.html' %}
+		{% include "base/header.html" %}
+
+		{% endblock %}
+	
+	<!-- Intro Banner
+	================================================== -->
+	<!-- add class "disable-gradient" to enable consistent background overlay -->
+		{% block banner %}
+	
+		{% endblock %}
+
+	<!-- Content
+	================================================== -->
+	<!-- Category Boxes -->
+
+		{% block content %}
+<!-- Dashboard Container -->
+<div class="dashboard-container">
+
+	<!-- Dashboard Sidebar
+	================================================== -->
+	<div class="dashboard-sidebar">
+		<div class="dashboard-sidebar-inner" data-simplebar>
+			<div class="dashboard-nav-container">
+
+				<!-- Responsive Navigation Trigger -->
+				<a href="#" class="dashboard-responsive-nav-trigger">
+					<span class="hamburger hamburger--collapse" >
+						<span class="hamburger-box">
+							<span class="hamburger-inner"></span>
+						</span>
+					</span>
+					<span class="trigger-title">Dashboard Navigation</span>
+				</a>
+				
+				<!-- Navigation -->
+				{% block navigation %}
+				{% include 'base/navigation.html' %}
+				{% endblock %}
+
+				<!-- Navigation / End -->
+			</div>
+		</div>
+	</div>
+	<!-- Dashboard Sidebar / End -->
+
+
+	<!-- Dashboard Content
+	================================================== -->
+	<div class="dashboard-content-container" data-simplebar>
+		<div class="dashboard-content-inner" >
+			
+			<!-- Dashboard Headline -->
+			<div class="dashboard-headline">
+				<h3>Howdy, {{request.user}}!</h3>
+				<span>We are glad to see you again!</span>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs" class="dark">
+					<ul>
+						<li><a href="{% url 'home' %}">Home</a></li>
+						<li>Dashboard</li>
+					</ul>
+				</nav>
+			</div>
+	
+			<!-- Fun Facts Container -->
+			
+			<div class="fun-facts-container">
+				<div class="fun-fact" data-fun-fact-color="#b81b7f">
+					<div class="fun-fact-text">
+						<span>Jobs Applied</span>
+						<h4>{{jobs_count}}</h4>
+					</div>
+					<div class="fun-fact-icon"><i class="icon-material-outline-business-center"></i></div>
+				</div>
+				<div class="fun-fact" data-fun-fact-color="#36bd78">
+					<div class="fun-fact-text">
+						<span>Companies Viewed</span>
+						<h4>{{company_view|div:2|floatformat:"0"}}</h4>
+					</div>
+					<div class="fun-fact-icon"><i class="icon-material-outline-gavel"></i></div>
+				</div>
+				
+				<div class="fun-fact" data-fun-fact-color="#efa80f">
+					<div class="fun-fact-text">
+						<span>Application Viewed</span>
+						<h4>{{application_view|div:2|floatformat:"0"}}</h4>
+					</div>
+					<div class="fun-fact-icon"><i class="icon-material-outline-rate-review"></i></div>
+				</div>
+
+				<!-- Last one has to be hidden below 1600px, sorry :( -->
+				<div class="fun-fact" data-fun-fact-color="#2a41e6">
+					<div class="fun-fact-text">
+						<span>This Month Views</span>
+						<h4>987</h4>
+					</div>
+					<div class="fun-fact-icon"><i class="icon-feather-trending-up"></i></div>
+				</div>
+			</div>
+			
+			<!-- Row -->
+			<div class="row">
+
+				
+				<div class="col-xl-8">
+
+					<div class="dashboard-box child-box-in-row"> 
+						<div class="headline">
+							<h3><i class="icon-material-outline-note-add"></i> Notes</h3>
+						</div>	
+
+						<div class="content with-padding">
+							
+							{% for note in note_stat %} 
+							<!-- Note -->
+							
+							<div class="dashboard-note">
+				
+								<p>{{note.note}}</p>
+								<div class="note-footer">
+									{% if note.priority == 'High Priority' %}
+									<span class="note-priority high">{{note.priority}}</span> 
+									{% elif note.priority == 'Medium Priority' %}
+									<span class="note-priority medium">{{note.priority}}</span>
+									{% else %}
+									<span class="note-priority low">{{note.priority}}</span>
+									{% endif %}
+
+									<div class="note-buttons">
+									
+										<strong>Entry Date :</strong> {{note.update_date }}
+									</div>
+									<div class="note-buttons">
+									
+										<a href="#" title="Edit" data-tippy-placement="top"><i class="icon-feather-edit"></i></a>
+										<a href="#" title="Remove" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+							<div class="add-note-button">
+								<a href="#small-dialog" class="popup-with-zoom-anim button full-width button-sliding-icon">Add Note <i class="icon-material-outline-arrow-right-alt"></i></a>
+							</div>
+					</div>
+					<!-- Dashboard Box / End -->
+				</div>
+				<!-- <div class="col-xl-4">
+	
+					<div class="dashboard-box main-box-in-row">
+						<div class="headline">
+							<h3><i class="icon-material-baseline-notifications-none"></i> Notifications</h3>
+							<button class="mark-as-read ripple-effect-dark" data-tippy-placement="left" title="Mark all as read">
+									<i class="icon-feather-check-square"></i>
+							</button>
+						</div>
+						<div class="content">
+							<ul class="dashboard-box-list">
+								<li>
+									<span class="notification-icon"><i class="icon-material-outline-group"></i></span>
+									<span class="notification-text">
+										<strong>Michael Shannah</strong> applied for a job <a href="#">Full Stack Software Engineer</a>
+									</span>
+				
+									<div class="buttons-to-right">
+										<a href="#" class="button ripple-effect ico" title="Mark as read" data-tippy-placement="left"><i class="icon-feather-check-square"></i></a>
+									</div>
+								</li>
+
+							</ul>
+						
+						</div>
+					</div>
+
+				</div> -->
+			</div>
+			<!-- Row / End -->
+
+
+			<!-- Footer -->
+			<div class="dashboard-footer-spacer"></div>
+			<div class="small-footer margin-top-15">
+				<div class="small-footer-copyrights">
+					© 2018 <strong></strong>. All Rights Reserved.
+				</div>
+				<ul class="footer-social-links">
+					<li>
+						<a href="#" title="Facebook" data-tippy-placement="top">
+							<i class="icon-brand-facebook-f"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="Twitter" data-tippy-placement="top">
+							<i class="icon-brand-twitter"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="Google Plus" data-tippy-placement="top">
+							<i class="icon-brand-google-plus-g"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="LinkedIn" data-tippy-placement="top">
+							<i class="icon-brand-linkedin-in"></i>
+						</a>
+					</li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<!-- Footer / End -->
+
+		</div>
+	</div>
+	<!-- Dashboard Content / End -->
+
+</div>
+<!-- Dashboard Container / End -->
+		{% endblock %}
+	<!-- Category Boxes / End -->
+	
+	
+	<!-- Features Jobs -->
+		{% block feature %}
+
+		{% endblock %}
+	<!-- Featured Jobs / End -->
+	
+	
+	<!-- Features Cities -->
+		{% block city %}
+	
+		{% endblock %}
+	<!-- Features Cities / End -->
+	
+	
+	<!-- Highest Rated Freelancers -->
+		{% block freelancer %}
+
+		{% endblock %}
+	<!-- Highest Rated Freelancers / End-->
+	
+	
+	<!-- Membership Plans -->
+		{% block membership %}
+	
+		{% endblock %}
+	<!-- Membership Plans / End-->
+	
+	<!-- Footer
+	================================================== -->
+	{% block footer %}
+
+	{% endblock %}
+	<!-- Footer / End -->
+
+	{% block popup %}
+	<div id="small-dialog" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+	
+		<!--Tabs -->
+		<form action="" method="POST">
+			{% csrf_token %}
+		<div class="sign-in-form">
+	
+			<ul class="popup-tabs-nav">
+				<li><a href="#tab">Add Note</a></li>
+			</ul>
+	
+			<div class="popup-tabs-container">
+	
+				<!-- Tab -->
+				<div class="popup-tab-content" id="tab">
+					
+					<!-- Welcome Text -->
+					<div class="welcome-text">
+						<h3>Do Not Forget 😎</h3>
+					</div>
+						
+					<!-- Form -->
+					<form method="post" id="add-note">
+						<!-- {% render_field form.priority class="selectpicker with-border default margin-bottom-20"  data-size="7" title="Priority" required='required' %} -->
+
+						<select class="selectpicker with-border default margin-bottom-20" name='priority' data-size="7" title="Priority" required>
+							<option>Low Priority</option>
+							<option>Medium Priority</option>
+							<option>Medium Priority</option>
+						</select>
+	
+						<textarea name="note" cols="10" placeholder="Note" class="with-border" required></textarea>
+						<!-- {% render_field form.note class="with-border" cols="10" placeholder="Note" required='required' %} -->
+
+					</form>
+					
+					<!-- Button -->
+					<button class="button full-width button-sliding-icon ripple-effect" type="submit" >Add Note <i class="icon-material-outline-arrow-right-alt"></i></button>
+			
+	
+				</div>
+	
+			</div>
+		</div>
+
+		</form>
+	</div>
+	{% endblock %}

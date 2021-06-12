@@ -1,0 +1,54 @@
+{% load static %}
+
+<div class="section gray margin-top-45 padding-top-65 padding-bottom-75">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-12">
+				
+				<!-- Section Headline -->
+				<div class="section-headline margin-top-0 margin-bottom-35">
+					<h3>Featured Jobs</h3>
+					<a href="{% url 'job_search' %}" class="headline-link">Browse All Jobs</a>
+				</div>
+				
+				<!-- Jobs Container -->
+				<div class="listings-container compact-list-layout margin-top-35">
+					{% for job in top_job %}
+					<!-- Job Listing -->
+					<a href="{% url 'job_page' job.id %}" class="job-listing with-apply-button">
+
+						<!-- Job Listing Details -->
+						<div class="job-listing-details">
+
+							<!-- Logo -->
+							<div class="job-listing-company-logo">
+								<img src="{% static 'images/company-logo-01.png' %}" alt="">
+							</div>
+
+							<!-- Details -->
+							<div class="job-listing-description">
+								<h3 class="job-listing-title">{{job.job_title}}</h3>
+
+								<!-- Job Listing Footer -->
+								<div class="job-listing-footer">
+									<ul>
+										<li><i class="icon-material-outline-business"></i> {{job.company_name}} <div class="verified-badge" title="Verified Employer" data-tippy-placement="top"></div></li>
+										<li><i class="icon-material-outline-location-on"></i> {{job.location}}</li>
+										<li><i class="icon-material-outline-business-center"></i> {{job.job_type}}</li>
+										<li><i class="icon-material-outline-access-time"></i> {{ job.entry_date|timesince:today }} ago</li>
+									</ul>
+								</div>
+							</div>
+
+							<!-- Apply Button -->
+							<span class="list-apply-button ripple-effect">Apply Now</span>
+						</div>
+					</a>	
+					{% endfor %}
+				</div>
+				<!-- Jobs Container / End -->
+				
+			</div>
+		</div>
+	</div>
+</div>

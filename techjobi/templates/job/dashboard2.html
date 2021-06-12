@@ -1,0 +1,114 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+	<!-- Header Container
+	================================================== -->
+	
+		{% block header %}
+		{% include 'base/messages.html' %}
+		{% include "base/header.html" %}
+
+		{% endblock %}
+	
+	<!-- Intro Banner
+	================================================== -->
+	<!-- add class "disable-gradient" to enable consistent background overlay -->
+		{% block banner %}
+	
+		{% endblock %}
+
+	<!-- Content
+	================================================== -->
+	<!-- Category Boxes -->
+
+		{% block content %}
+
+		<div id="small-dialog">
+	
+			<!--Tabs -->
+			<form action="" method="POST">
+				{% csrf_token %}
+			<div class="sign-in-form">
+		
+				<ul class="popup-tabs-nav">
+					<li><a href="#tab">Edit Note</a></li>
+				</ul>
+		
+				<div class="popup-tabs-container">
+		
+					<!-- Tab -->
+					<div class="popup-tab-content" id="tab">
+						
+						<!-- Welcome Text -->
+						<div class="welcome-text">
+							<h3>Edit your Note 😎</h3>
+						</div>
+							
+						<!-- Form -->
+						<form method="post" id="add-note">
+							<!-- {% render_field form.priority class="selectpicker with-border default margin-bottom-20"  data-size="7" title="Priority" required='required' %} -->
+	
+							<select class="selectpicker with-border default margin-bottom-20" name='priority' data-size="7" title="{{note_stat.priority}}"  required >
+								<option>Low Priority</option>
+								<option>Medium Priority</option>
+								<option>High Priority</option>
+							</select>
+		
+							<textarea name="note" cols="10" placeholder="Note" class="with-border" required>{{note_stat.note}}</textarea>
+							<!-- {% render_field form.note class="with-border" cols="10" placeholder="Note" required='required' %} -->
+	
+						</form>
+						
+						<!-- Button -->
+						<button class="button full-width button-sliding-icon ripple-effect" type="submit" >Update Note <i class="icon-material-outline-arrow-right-alt"></i></button>
+				
+		
+					</div>
+		
+				</div>
+			</div>
+	
+			</form>
+		</div>
+		{% endblock %}
+	<!-- Category Boxes / End -->
+	
+	
+	<!-- Features Jobs -->
+		{% block feature %}
+
+		{% endblock %}
+	<!-- Featured Jobs / End -->
+	
+	
+	<!-- Features Cities -->
+		{% block city %}
+	
+		{% endblock %}
+	<!-- Features Cities / End -->
+	
+	
+	<!-- Highest Rated Freelancers -->
+		{% block freelancer %}
+
+		{% endblock %}
+	<!-- Highest Rated Freelancers / End-->
+	
+	
+	<!-- Membership Plans -->
+		{% block membership %}
+	
+		{% endblock %}
+	<!-- Membership Plans / End-->
+	
+	<!-- Footer
+	================================================== -->
+	{% block footer %}
+
+	{% endblock %}
+	<!-- Footer / End -->
+
+
+

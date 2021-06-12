@@ -1,0 +1,64 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+
+	<!-- Header Container
+	================================================== -->
+	
+		{% block header %}
+		{% include 'base/messages.html' %}
+		{% include "base/header.html" %}
+	
+		{% endblock %}
+	
+	<!-- Intro Banner
+	================================================== -->
+	<!-- add class "disable-gradient" to enable consistent background overlay -->
+		{% block banner %}
+		{% include "base/banner.html" %}
+		{% endblock %}
+	
+	
+	<!-- Content
+	================================================== -->
+	<!-- Category Boxes -->
+		{% block content %}
+		{% include "base/content.html" %}
+		{% endblock %}
+	<!-- Category Boxes / End -->
+	
+	
+	<!-- Features Jobs -->
+		{% block feature %}
+		{% include "base/features.html" %}
+		{% endblock %}
+	<!-- Featured Jobs / End -->
+	
+	
+	<!-- Features Cities -->
+		{% block city %}
+		{% include "base/city.html" %}
+		{% endblock %}
+	<!-- Features Cities / End -->
+	
+	
+	<!-- Highest Rated Freelancers -->
+		{% block freelancer %}
+
+		{% endblock %}
+	<!-- Highest Rated Freelancers / End-->
+	
+	
+	<!-- Membership Plans -->
+		{% block membership %}
+	
+		{% endblock %}
+	<!-- Membership Plans / End-->
+	
+	<!-- Footer
+	================================================== -->
+	{% block footer %}
+	{% include "base/footer.html" %}
+	{% endblock %}
+	<!-- Footer / End -->
+

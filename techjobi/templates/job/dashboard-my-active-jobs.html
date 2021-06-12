@@ -1,0 +1,201 @@
+{% extends "base/base.html" %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+	<!-- Header Container
+	================================================== -->
+	
+		{% block header %}
+		{% include 'base/messages.html' %}
+
+		{% include "base/header.html" %}
+	
+
+		{% endblock %}
+	
+	<!-- Intro Banner
+	================================================== -->
+	<!-- add class "disable-gradient" to enable consistent background overlay -->
+		{% block banner %}
+	
+		{% endblock %}
+	
+	
+	<!-- Content
+	================================================== -->
+	<!-- Category Boxes -->
+
+
+
+
+		{% block content %}
+	<!-- Dashboard Container -->
+<div class="dashboard-container">
+
+	<!-- Dashboard Sidebar
+	================================================== -->
+
+	{% block dash-sidebar %}
+	{% include "base/dash-sidebar.html" %}
+	{% endblock %}
+
+
+	<!-- Dashboard Sidebar / End -->
+
+
+	<!-- Dashboard Content
+	================================================== -->
+	<div class="dashboard-content-container" data-simplebar>
+		<div class="dashboard-content-inner" >
+			
+			<!-- Dashboard Headline -->
+			<div class="dashboard-headline">
+				<h3>Settings </h3>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs" class="dark">
+					<ul>
+						<li><a href="{% url 'home' %}">Home</a></li>
+						<li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+						{% if filed == 'job_posted' %}
+						<li>My Posted Jobs</li>
+						{% else %}
+						<li>My Applied Job</li>
+						{% endif %}
+					</ul>
+				</nav>
+			</div>
+	
+			<!-- Row -->
+			<div class="row">
+
+					<!-- Dashboard Box -->
+					<div class="col-xl-12">
+						<div class="dashboard-box margin-top-0">
+	
+							<!-- Headline -->
+							<div class="headline">
+								<h3><i class="icon-material-outline-gavel"></i> Jobs List</h3>
+							</div>
+	
+							<div class="content">
+								<ul class="dashboard-box-list">
+									{% for items in details %}
+									<li>
+										<!-- Job Listing -->
+										<div class="job-listing width-adjustment">
+											
+											<!-- Job Listing Details -->
+											<div class="job-listing-details">
+	
+												<!-- Details -->
+												<div class="job-listing-description">
+													<h3 class="job-listing-title"><a href="{% url 'job_page' items.id %}">{{items.job_title}}</a></h3>
+												</div>
+											</div>
+										</div>
+										
+										<!-- Task Details -->
+										<ul class="dashboard-task-info">
+											<li><strong>{{items.company_name}}</strong><span>Company</span></li>
+											<li><strong>{{items.location}}</strong><span>Location</span></li>
+
+											<li><strong>{{items.entry_date}}</strong><span>Application Date</span></li>
+											<li><strong>{{items.deadline}}</strong><span>Deadline</span></li>
+										</ul>
+	
+										<!-- Buttons -->
+										<!-- <div class="buttons-to-right always-visible">
+											<a href="#small-dialog" class="popup-with-zoom-anim button dark ripple-effect ico" title="Edit Bid" data-tippy-placement="top"><i class="icon-feather-edit"></i></a>
+											<a href="#" class="button red ripple-effect ico" title="Cancel Bid" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+										</div> -->
+									
+									</li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+					</div>
+	
+			</div>
+			<!-- Row / End -->
+	
+			<!-- Footer -->
+			<div class="dashboard-footer-spacer"></div>
+			<div class="small-footer margin-top-15">
+				<div class="small-footer-copyrights">
+					© 2021 <strong></strong>. All Rights Reserved.
+				</div>
+				<ul class="footer-social-links">
+					<li>
+						<a href="#" title="Facebook" data-tippy-placement="top">
+							<i class="icon-brand-facebook-f"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="Twitter" data-tippy-placement="top">
+							<i class="icon-brand-twitter"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="Google Plus" data-tippy-placement="top">
+							<i class="icon-brand-google-plus-g"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="LinkedIn" data-tippy-placement="top">
+							<i class="icon-brand-linkedin-in"></i>
+						</a>
+					</li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<!-- Footer / End -->
+
+		</div>
+	</div>
+	<!-- Dashboard Content / End -->
+
+</div>
+<!-- Dashboard Container / End -->
+		
+		{% endblock %}
+	<!-- Category Boxes / End -->
+	
+	
+	<!-- Features Jobs -->
+		{% block feature %}
+
+		{% endblock %}
+	<!-- Featured Jobs / End -->
+	
+	
+	<!-- Features Cities -->
+		{% block city %}
+	
+		{% endblock %}
+	<!-- Features Cities / End -->
+	
+	
+	<!-- Highest Rated Freelancers -->
+		{% block freelancer %}
+
+		{% endblock %}
+	<!-- Highest Rated Freelancers / End-->
+	
+	
+	<!-- Membership Plans -->
+		{% block membership %}
+	
+		{% endblock %}
+	<!-- Membership Plans / End-->
+	
+	<!-- Footer
+	================================================== -->
+	{% block footer %}
+
+	{% endblock %}
+	<!-- Footer / End -->
+

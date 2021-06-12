@@ -1,0 +1,517 @@
+{% extends "base/base.html" %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+	<!-- Header Container
+	================================================== -->
+	
+		{% block header %}
+		{% include 'base/messages.html' %}
+
+	
+		{% include "base/header.html" %}
+
+
+		{% endblock %}
+	
+	<!-- Intro Banner
+	================================================== -->
+	<!-- add class "disable-gradient" to enable consistent background overlay -->
+		{% block banner %}
+	
+		{% endblock %}
+
+	<!-- Content
+	================================================== -->
+	<!-- Category Boxes -->
+
+		{% block content %}
+<!-- Dashboard Container -->
+<div class="dashboard-container">
+
+	<!-- Dashboard Sidebar
+	================================================== -->
+	<div class="dashboard-sidebar">
+		<div class="dashboard-sidebar-inner" data-simplebar>
+			<div class="dashboard-nav-container">
+
+				<!-- Responsive Navigation Trigger -->
+				<a href="#" class="dashboard-responsive-nav-trigger">
+					<span class="hamburger hamburger--collapse" >
+						<span class="hamburger-box">
+							<span class="hamburger-inner"></span>
+						</span>
+					</span>
+					<span class="trigger-title">Dashboard Navigation</span>
+				</a>
+				
+				<!-- Navigation -->
+				{% block navigation %}
+				{% include 'base/navigation.html' %}
+				{% endblock %}
+
+				<!-- Navigation / End -->
+
+			</div>
+		</div>
+	</div>
+	<!-- Dashboard Sidebar / End -->
+
+	
+	<!-- Dashboard Content
+	================================================== -->
+	<div class="dashboard-content-container" data-simplebar>
+		<div class="dashboard-content-inner" >
+			
+			<!-- Dashboard Headline -->
+			<div class="dashboard-headline">
+				<h3>Settings</h3>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs" class="dark">
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+						<li>Settings</li>
+					</ul>
+				</nav>
+			</div>
+	
+			<!-- Row -->
+			<div class="row">
+
+			<form action="" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<!-- Dashboard Box -->
+				<div class="col-xl-12">
+					<div class="dashboard-box margin-top-0">
+
+						<!-- Headline -->
+						<div class="headline">
+							<h3><i class="icon-material-outline-account-circle"></i> My Account</h3>
+						</div>
+
+						<div class="content with-padding padding-bottom-0">
+
+							<div class="row">
+
+								<div class="col-auto">
+									<div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
+										<img class="profile-pic" src="images/user-avatar-placeholder.png" alt="" />
+										<div class="upload-button"></div>
+										{% render_field form.profile_pic class="file-upload" type="file" accept="image/*"  %}
+									</div>
+								</div>
+
+								<div class="col">
+									<div class="row">
+
+										<div class="col-xl-6">
+											<div class="submit-field">
+												<h5>First Name</h5>
+												{% render_field form.first_name type="text" class="with-border"  required='required' %}
+												
+											</div>
+										</div>
+
+										<div class="col-xl-6">
+											<div class="submit-field">
+												<h5>Last Name</h5>
+												{% render_field form.last_name type="text" class="with-border"  required='required' %}
+
+											</div>
+										</div>
+										<!-- Account Type -->
+										<!-- <div class="col-xl-6">
+											
+											<div class="submit-field">
+												<h5>Account Type</h5>
+												<div class="account-type">
+													<div>
+														<input type="radio" name="account_type" id="freelancer-radio" value ='Candidate' class="account-type-radio" checked/>
+														<label for="freelancer-radio" class="ripple-effect-dark"><i class="icon-material-outline-account-circle"></i> Freelancer</label>
+													</div>
+
+													<div>
+														<input type="radio" name="account_type" id="employer-radio" value ='Employer' class="account-type-radio"/>
+														<label for="employer-radio" class="ripple-effect-dark"><i class="icon-material-outline-business-center"></i> Employer</label>
+													</div>
+												</div>
+											</div>
+										</div> -->
+
+										<div class="col-xl-6">
+											<div class="submit-field">
+												<h5>Email</h5>
+												{% render_field form.email type="email" class="with-border"  required='required'  %}
+
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+	
+					</div>
+				</div>
+
+			
+				<!-- Dashboard Box -->
+				<div class="col-xl-12">
+					<div class="dashboard-box">
+
+						<!-- Headline -->
+						<div class="headline">
+							<h3><i class="icon-material-outline-face"></i> My Profile</h3>
+						</div>
+
+						
+						
+							<ul class="fields-ul">
+							<li>
+								<span class="bidding-detail"><strong>Employment History - </strong> Enter Current or Last Employment</strong></span>
+								
+								<p></p>
+								<div class="row">
+
+									<div class="col-xl-3">
+										
+										<div class="submit-field">	
+
+											<div class="input-with-icon">
+												<div id="autocomplete-container">
+													
+													{% render_field form.job_role class="with-border" type="text" placeholder="Job Role" required='required' %}
+												</div>
+										
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xl-4">
+										<div class="submit-field">
+							
+											<div class="input-with-icon">
+												<div id="autocomplete-container">
+													
+													{% render_field form.company class="with-border" type="text" placeholder="Employer Name" required='required' %}
+												</div>
+											
+											</div>
+										</div>
+									</div>
+	
+
+									<div class="col-xl-5">
+										<div class="submit-field">
+										
+											<div class="row">
+												<div class="col-xl-6">
+													<div class="input-with-icon">
+														{% render_field form.start_period class="with-border" type="month" placeholder="Start Date" required='required' %}
+											
+													</div>
+												</div>
+												<div class="col-xl-6">
+													<div class="input-with-icon">
+														{% render_field form.end_period class="with-border" type="month" placeholder="End Date" required='required' %}
+											
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+	
+									
+									<div class="col-xl-12">
+										<div class="submit-field">
+											
+											<div class="input-with-icon">
+												<div id="autocomplete-container">
+													
+													{% render_field form.duty class="with-border"  placeholder="Job Function" rows='1' required='required' %}
+												</div>
+										
+											</div>
+										</div>
+									</div>
+		</div>
+							</li>
+
+							<li>
+								<div class="row">
+
+									<div class="col-xl-8">
+										<div class="submit-field">
+											<h5>Skills <i class="help-icon" data-tippy-placement="right" title="Add skills, seperate with a comma"></i></h5>
+
+											<!-- Skills List -->
+											<div class="keywords-container">
+												<div class="keyword-input-container">
+													<!-- <input type="text" class="keyword-input with-border" placeholder="e.g. Angular, Laravel"/> -->
+													{% render_field form.skills type="text" class="keyword-input with-border" placeholder="e.g. Angular, Laravel" required='required' %}
+													
+												</div>
+
+												<div class="clearfix"></div>
+											</div>
+										</div>
+									</div>
+
+								
+
+									<div class="col-xl-4">
+										<div class="submit-field">
+											<h5>Attachments</h5>
+											
+											<!-- Attachments -->
+											<div class="attachments-container margin-top-0 margin-bottom-0">
+												<div class="attachment-box ripple-effect">
+													<span>Resume</span>
+													<i>PDF</i>
+													<button class="remove-attachment" data-tippy-placement="top" title="Remove"></button>
+												</div>
+												<div class="attachment-box ripple-effect">
+													<span>Cover Letter</span>
+													<i>DOCX</i>
+													<button class="remove-attachment" data-tippy-placement="top" title="Remove"></button>
+												</div>
+											</div>
+											<div class="clearfix"></div>
+											
+											<!-- Upload Button -->
+											<div class="uploadButton margin-top-0">
+												<!-- <input class="uploadButton-input" type="file" accept="image/*, application/pdf" id="upload" multiple/> -->
+												{% render_field form.doc_upload class="uploadButton-input" type="file" accept="image/*, application/pdf" id="upload" multiple='multiple' %}
+												<label class="uploadButton-button ripple-effect" for="upload">Upload Files</label>
+												<span class="uploadButton-file-name">Maximum file size: 10 MB</span>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</li>
+
+							<li>
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="submit-field">
+											<h5>Tagline</h5>
+											{% render_field form.tag type="text" class="with-border" %}
+											<!-- <input type="text" class="with-border" value="iOS Expert + Node Dev"> -->
+										</div>
+									</div>
+
+									<div class="col-xl-6">
+										<div class="submit-field">
+											<h5>Country</h5>
+											<select class="selectpicker with-border" name='nationality'  data-size="7" title="Select Job Type" data-live-search="true" required>
+												<option value="AR">Argentina</option>
+												<option value="AM">Armenia</option>
+												<option value="AW">Aruba</option>
+												<option value="AU">Australia</option>
+												<option value="AT">Austria</option>
+												<option value="AZ">Azerbaijan</option>
+												<option value="BS">Bahamas</option>
+												<option value="BH">Bahrain</option>
+												<option value="BD">Bangladesh</option>
+												<option value="BB">Barbados</option>
+												<option value="BY">Belarus</option>
+												<option value="BE">Belgium</option>
+												<option value="BZ">Belize</option>
+												<option value="BJ">Benin</option>
+												<option value="BM">Bermuda</option>
+												<option value="BT">Bhutan</option>
+												<option value="BG">Bulgaria</option>
+												<option value="BF">Burkina Faso</option>
+												<option value="BI">Burundi</option>
+												<option value="KH">Cambodia</option>
+												<option value="CM">Cameroon</option>
+												<option value="CA">Canada</option>
+												<option value="CV">Cape Verde</option>
+												<option value="KY">Cayman Islands</option>
+												<option value="CO">Colombia</option>
+												<option value="KM">Comoros</option>
+												<option value="CG">Congo</option>
+												<option value="CK">Cook Islands</option>
+												<option value="CR">Costa Rica</option>
+												<option value="CI">Côte d'Ivoire</option>
+												<option value="HR">Croatia</option>
+												<option value="CU">Cuba</option>
+												<option value="CW">Curaçao</option>
+												<option value="CY">Cyprus</option>
+												<option value="CZ">Czech Republic</option>
+												<option value="DK">Denmark</option>
+												<option value="DJ">Djibouti</option>
+												<option value="DM">Dominica</option>
+												<option value="DO">Dominican Republic</option>
+												<option value="EC">Ecuador</option>
+												<option value="EG">Egypt</option>
+												<option value="GP">Guadeloupe</option>
+												<option value="GU">Guam</option>
+												<option value="GT">Guatemala</option>
+												<option value="GG">Guernsey</option>
+												<option value="GN">Guinea</option>
+												<option value="GW">Guinea-Bissau</option>
+												<option value="GY">Guyana</option>
+												<option value="HT">Haiti</option>
+												<option value="HN">Honduras</option>
+												<option value="HK">Hong Kong</option>
+												<option value="HU">Hungary</option>
+												<option value="IS">Iceland</option>
+												<option value="IN">India</option>
+												<option value="ID">Indonesia</option>
+												<option value="NO">Norway</option>
+												<option value="OM">Oman</option>
+												<option value="PK">Pakistan</option>
+												<option value="PW">Palau</option>
+												<option value="PA">Panama</option>
+												<option value="PG">Papua New Guinea</option>
+												<option value="PY">Paraguay</option>
+												<option value="PE">Peru</option>
+												<option value="PH">Philippines</option>
+												<option value="PN">Pitcairn</option>
+												<option value="PL">Poland</option>
+												<option value="PT">Portugal</option>
+												<option value="PR">Puerto Rico</option>
+												<option value="QA">Qatar</option>
+												<option value="RE">Réunion</option>
+												<option value="RO">Romania</option>
+												<option value="RU">Russian Federation</option>
+												<option value="RW">Rwanda</option>
+												<option value="SZ">Swaziland</option>
+												<option value="SE">Sweden</option>
+												<option value="CH">Switzerland</option>
+												<option value="TR">Turkey</option>
+												<option value="TM">Turkmenistan</option>
+												<option value="TV">Tuvalu</option>
+												<option value="UG">Uganda</option>
+												<option value="UA">Ukraine</option>
+												<option value="GB">United Kingdom</option>
+												<option value="Nigeria" selected>Nigeria</option>
+												<option value="UY">Uruguay</option>
+												<option value="UZ">Uzbekistan</option>
+												<option value="YE">Yemen</option>
+												<option value="ZM">Zambia</option>
+												<option value="ZW">Zimbabwe</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="col-xl-6">
+										<div class="submit-field">
+											<h5>Location</h5>
+											{% render_field form.location type="text" class="with-border" required='required' %}
+											<!-- <input type="text" class="with-border" value="iOS Expert + Node Dev"> -->
+										</div>
+									</div>
+
+									<div class="col-xl-12">
+										<div class="submit-field">
+											<h5>Introduce Yourself</h5>
+											
+											{% render_field form.intro cols="30" rows="5" class="with-border" required='required' %}
+										</div>
+									</div>
+
+								</div>
+							</li>
+						</ul>
+						</div>
+				</div>
+				
+		
+				<!-- Button -->
+				<div class="col-xl-12">
+					<!-- <a href="#" class="button ripple-effect big margin-top-30">Save Changes</a> -->
+					<button type="submit" class="button ripple-effect big margin-top-30"> Save Changes</button>
+				</div>
+			</form>
+			</div>
+			<!-- Row / End -->
+
+			<!-- Footer -->
+			<div class="dashboard-footer-spacer"></div>
+			<div class="small-footer margin-top-15">
+				<div class="small-footer-copyrights">
+					© 2018 <strong>Hireo</strong>. All Rights Reserved.
+				</div>
+				<ul class="footer-social-links">
+					<li>
+						<a href="#" title="Facebook" data-tippy-placement="top">
+							<i class="icon-brand-facebook-f"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="Twitter" data-tippy-placement="top">
+							<i class="icon-brand-twitter"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="Google Plus" data-tippy-placement="top">
+							<i class="icon-brand-google-plus-g"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="LinkedIn" data-tippy-placement="top">
+							<i class="icon-brand-linkedin-in"></i>
+						</a>
+					</li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<!-- Footer / End -->
+
+		</div>
+	</div>
+	<!-- Dashboard Content / End -->
+
+</div>
+<!-- Dashboard Container / End -->
+
+
+		{% endblock %}
+	<!-- Category Boxes / End -->
+	
+	
+	<!-- Features Jobs -->
+		{% block feature %}
+
+		{% endblock %}
+	<!-- Featured Jobs / End -->
+	
+	
+	<!-- Features Cities -->
+		{% block city %}
+	
+		{% endblock %}
+	<!-- Features Cities / End -->
+	
+	
+	<!-- Highest Rated Freelancers -->
+		{% block freelancer %}
+
+		{% endblock %}
+	<!-- Highest Rated Freelancers / End-->
+	
+	
+	<!-- Membership Plans -->
+		{% block membership %}
+	
+		{% endblock %}
+	<!-- Membership Plans / End-->
+	
+	<!-- Footer
+	================================================== -->
+	{% block footer %}
+
+	{% endblock %}
+	<!-- Footer / End -->
+
+	{% block popup %}
+
+	{% endblock %}
